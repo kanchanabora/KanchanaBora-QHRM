@@ -1,0 +1,68 @@
+﻿<link href="~/css/StyleSheet.css" rel="stylesheet" id="bootstrap-css">
+
+
+<div class="container contact">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="contact-info">
+				<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
+				<h2>Add Product</h2>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+				<form method="post"id="addproduct"asp-controller="Home" asp-action="AddProduct">
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="fname">Product Name:</label>
+				  <div class="col-sm-10">
+							<input type="text" class="form-control" id="Name" required placeholder="Enter  Name" name="Name">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="lname">Price:</label>
+				  <div class="col-sm-10">
+							<input type="text" class="form-control" id="Price" required placeholder="Enter Price" name="Price">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="comment">Description:</label>
+				  <div class="col-sm-10">
+							<textarea class="form-control" rows="5" id="Description" name="Description" ></textarea>
+				  </div>
+				</div> 
+				<div class="form-group">        
+				  <div class="col-sm-offset-2 col-sm-10">
+							<a onclick="AddProducts();" class="fcc-btn">Submit</a>
+				  </div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function AddProducts() {
+		var name = $("#Name").val();
+		var price = $("#Price").val();
+		var description = $("#Description").val();
+		if (name == "") {
+			alert("Please enter Product Name");
+			$("#Name").focus();
+		} else if (price == "") {
+			alert("Please enter Price");
+			price.focus();
+		} else if (!/^\d+(\.\d+)?$/.test(price)) {
+			alert("Price must be a positive number and cannot contain non-numeric characters");
+			price.focus();
+		} else if (price <= 0) {
+			alert("Price must be greater than 0");
+			price.focus();
+		} else if (description == "") {
+			alert("Please enter Description");
+			description.focus();
+		} else {
+			$("#addproduct").submit();
+		}
+	}
+</script>
+	
